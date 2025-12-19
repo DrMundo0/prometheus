@@ -31,6 +31,18 @@ list0.index("Roman")
 # 反转列表中的元素
 list0.reverse()
 
+# 通过 __sizeof__() 函数查看列表所占的内存空间，单位字节
+# 列表通过预先分配内存来提高操作效率
+list0.__sizeof__()
+
+# -m timeit 可精确测量小段 Python 代码的执行时间
+!python3 -m timeit 'x=(1,2,3,4,5,6)'
+
+import timeit
+
+code = "x=[1,2,3,4,5,6]"
+print(timeit.timeit(stmt=code, number=20000000))
+
 keys = [x for x in range(0, 100000)]
 vals = [x for x in range(200000, 300000)]
 list0 = list(zip(keys, vals))
