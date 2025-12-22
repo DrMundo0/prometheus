@@ -38,6 +38,8 @@ list0.__sizeof__()
 # -m timeit 可精确测量小段 Python 代码的执行时间
 !python3 -m timeit 'x=(1,2,3,4,5,6)'
 
+# [Python性能分析利器：timeit 模块深度解析](https://hot.dawoai.com/posts/2025/python-performance-analysis-timeit-module-in-depth-analysis)
+# [Python 3 时间测试神器：轻松掌握 timeit 模块高效用法](https://www.oryoy.com/news/python-3-shi-jian-ce-shi-shen-qi-qing-song-zhang-wo-timeit-mo-kuai-gao-xiao-yong-fa.html)
 import timeit
 
 code = "x=[1,2,3,4,5,6]"
