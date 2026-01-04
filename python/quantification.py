@@ -15,9 +15,10 @@ class OrderBoook(object):
     ASKS = "ask"
 
     def __init__(self, limit=20):
+        # Python 的字段不用事先声明，直接写
         self.limit = limit
-        self.bids = {}
-        self.asks = {}
+        self.bids = {} # 买方挂单字典
+        self.asks = {} # 卖方挂单字典
         self.bids_sorted = []
         self.asks_sorted = []
     
@@ -28,14 +29,14 @@ class OrderBoook(object):
                     del self.bids[price]
             else:
                 self.bids[price] = amount
-                print("BID: {} / {}".format(price, amount))
+                log.info("BID: {} / {}".format(price, amount))
         elif direction == self.ASKS:
             if amount == 0:
                 if price in self.asks:
                     del self.asks[price]
             else:
                 self.asks[price] = amount
-                print("ASK: {} / {}".format(price, amount))
+                log.info("ASK: {} / {}".format(price, amount))
         else:
             print("WARNING: unknown direction {}".format(direction))
     
@@ -92,6 +93,10 @@ class Crawler:
 if __name__ == "__main__":
     symbol = "BTCUSD"
     logging.basicConfig(
-        filename="{}".format(symbol)
+        filename="info-{}.log".format(symbol),
+        level=logging.INFO
     )
-    crawler = Crawler(symbol="BTCUSD", output_file="BTCUSD.log")
+    crawler = Crawler(
+        symbol=symbol,
+        output_file="{}.log".format(symbol)
+    )

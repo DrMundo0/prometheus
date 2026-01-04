@@ -37,11 +37,15 @@ $ venv\Scripts\deactivate.bat
 
 ## websocket-client
 
-* [Python如何安装websocket](https://docs.pingcode.com/ask/933530.html)
+* [Python 如何安装 websocket](https://docs.pingcode.com/ask/933530.html)
 * [websocket-client 1.9.0](https://pypi.org/project/websocket-client/)
 * [websocket-client’s documentation](https://websocket-client.readthedocs.io/en/latest/)
 * [Connecting through a proxy](https://websocket-client.readthedocs.io/en/latest/examples.html#connecting-through-a-proxy)
 
 ## websockets
 
-* [Python安装WebSocket](https://geek-docs.com/python/python-ask-answer/289_hk_1710201222.html)
+* [Python 安装 WebSocket](https://geek-docs.com/python/python-ask-answer/289_hk_1710201222.html)
+
+## log
+
+* [logging — Logging facility for Python](https://docs.python.org/3.13/library/logging.html)
