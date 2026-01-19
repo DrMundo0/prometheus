@@ -100,14 +100,18 @@ def draw(*objects, origin=True, axes=True, grid=(1, 1), nice_aspect_ratio=True, 
 
     for object in objects:
         if type(object) == Polygon:
-            for i in range(0,len(object.vertices)):
+            for i in range(0, len(object.vertices)):
                 x1, y1 = object.vertices[i]
-                x2, y2 = object.vertices[(i+1)%len(object.vertices)]
-                plt.plot([x1,x2],[y1,y2], color=object.color)
+                x2, y2 = object.vertices[(i + 1) % len(object.vertices)]
+                
+                # plot 函数用于绘制线段
+                # https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html
+                plt.plot([x1, x2], [y1, y2], color=object.color)
+            
             if object.fill:
                 xs = [v[0] for v in object.vertices]
                 ys = [v[1] for v in object.vertices]
-                plt.gca().fill(xs,ys,object.fill,alpha=object.alpha)
+                plt.gca().fill(xs, ys, object.fill, alpha=object.alpha)
         elif type(object) == Points:
             xs = [v[0] for v in object.vectors]
             ys = [v[1] for v in object.vectors]
@@ -165,3 +169,9 @@ for i in range(0, len(dino_vectors)):
         objs.append(Segment(dino_vectors[i - 1], dino_vectors[i]))
 
 draw(*objs)
+
+# 画恐龙的聪明版本，利用多边形对象
+draw(Polygon(*dino_vectors))
+
+# 画出恐龙的点和线
+draw(Points(*dino_vectors), Polygon(*dino_vectors))
