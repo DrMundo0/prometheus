@@ -143,4 +143,25 @@ def draw(*objects, origin=True, axes=True, grid=(1, 1), nice_aspect_ratio=True, 
 
 # 恐龙二维向量集合
 dino_vectors = [ (6, 4), (3, 1), (1, 2), (-1, 5), (-2, 5), (-3, 4), (-4, 4), (-5, 3), (-5, 2), (-2, 2), (-5, 1), (-4, 0), (-2, 1), (-1, 0), (0, -3), (-1, -4), (1, -4), (2, -3), (1, -2), (3, -1), (5, 1) ]
+# 画出恐龙轮廓的各个点
 draw(Points(*dino_vectors))
+
+# 绘制队列，用点坐标初始化
+objs = [ Points(*dino_vectors) ]
+
+# 将要绘制的线段加入绘制队列中
+for i in range(0, len(dino_vectors)):
+    if i < len(dino_vectors) - 1:
+        # 从第一个点，到最后一个点，每一个线段都是从自己到下一个点
+        print(i, dino_vectors[i], dino_vectors[i + 1])
+        objs.append(Segment(dino_vectors[i], dino_vectors[i + 1]))
+    elif i == len(dino_vectors) - 1:
+        # 第20个点，从最后
+        print(i, dino_vectors[i], dino_vectors[0])
+        objs.append(Segment(dino_vectors[i], dino_vectors[0]))
+    else:
+        # 第21个点，
+        print(i, dino_vectors[i - 1], dino_vectors[i])
+        objs.append(Segment(dino_vectors[i - 1], dino_vectors[i]))
+
+draw(*objs)
