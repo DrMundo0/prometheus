@@ -1,3 +1,9 @@
+# 什么是向量？
+# 向量用于描述多维环境中的一个点，拿二维空间来说，有x轴、y轴两个轴，一个点的定义由x轴的量和y轴的量表示，这两个量组成的二维空间点描述被称为向量
+
+# 什么是标量？
+# 标量是一个数，整数、小数、分数，都是一个标量
+
 from math import sqrt, pi, ceil, floor
 import matplotlib
 import matplotlib.patches
@@ -189,3 +195,7 @@ def add(v1, v2):
 # dino_vectors 中每个向量都加 (-1.5, -2.5) 相当于左移 1.5，再下移 2.5
 dino_vectors2 = [ add((-1.5, -2.5), v) for v in dino_vectors ]
 draw(Points(*dino_vectors2), Polygon(*dino_vectors))
+
+# 向量加法的第二个版本，支持传入任意多个向量，使用了列表推导式
+def add2(*vs):
+    return (sum([v[0] for v in vs]), sum([v[1] for v in vs]))
