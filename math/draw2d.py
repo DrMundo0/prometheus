@@ -28,13 +28,11 @@ def extract_vectors(objects):
         else:
             raise TypeError("Unrecognized object: {}".format(object))
 
-def draw(*objects, origin=True, axes=True, grid=(1,1), nice_aspect_ratio=True,
-            width=6, save_as=None):
-
+def draw(*objects, origin=True, axes=True, grid=(1, 1), nice_aspect_ratio=True, width=6, save_as=None):
     all_vectors = list(extract_vectors(objects))
     xs, ys = zip(*all_vectors)
 
-    max_x, max_y, min_x, min_y = max(0,*xs), max(0,*ys), min(0,*xs), min(0,*ys)
+    max_x, max_y, min_x, min_y = max(0, *xs), max(0, *ys), min(0, *xs), min(0, *ys)
 
     #sizing
     if grid:

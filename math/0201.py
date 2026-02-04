@@ -4,7 +4,7 @@
 # 什么是标量？
 # 标量是一个数，整数、小数、分数，都是一个标量
 
-from draw_matplotlib import draw
+from draw2d import draw
 from patch import Arrow, Polygon, Points, Segment
 
 # 恐龙二维向量集合
