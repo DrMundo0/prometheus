@@ -7,7 +7,7 @@ import numpy as np
 from math import ceil, floor, pi, sqrt
 from matplotlib.collections import PatchCollection
 from matplotlib.pyplot import xlim, ylim
-from patch import Arrow, Polygon, Points, Segment
+from patch2d import Arrow, Polygon, Points, Segment
 
 # helper function to extract all the vectors from a list of objects
 # 从对象列表中提取所有向量
