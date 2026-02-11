@@ -8,6 +8,7 @@ from draw2d import draw
 from patch2d import Arrow, Polygon, Points, Segment, add, dino_vectors
 
 # 画出恐龙轮廓的各个点
+# 星号是 Python 中的解包运算符，不加星号，会把 dino_vectors tuple list 传入 Points 函数，加了星号则会把 dino_vectors tuple list 中的每个 tuple 挨个传入 Points 函数，这样就会画出每个 Points
 draw(Points(*dino_vectors))
 
 # 绘制队列，用点坐标初始化

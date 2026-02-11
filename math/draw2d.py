@@ -34,7 +34,7 @@ def draw(*objects, origin=True, axes=True, grid=(1, 1), nice_aspect_ratio=True, 
 
     max_x, max_y, min_x, min_y = max(0, *xs), max(0, *ys), min(0, *xs), min(0, *ys)
 
-    #sizing
+    # sizing
     if grid:
         x_padding = max(ceil(0.05*(max_x-min_x)), grid[0])
         y_padding = max(ceil(0.05*(max_y-min_y)), grid[1])
@@ -76,8 +76,8 @@ def draw(*objects, origin=True, axes=True, grid=(1, 1), nice_aspect_ratio=True, 
                 ys = [v[1] for v in object.vertices]
                 plt.gca().fill(xs,ys,object.fill,alpha=object.alpha)
         elif type(object) == Points:
-            xs = [v[0] for v in object.vectors]
-            ys = [v[1] for v in object.vectors]
+            xs = [ v[0] for v in object.vectors ]
+            ys = [ v[1] for v in object.vectors ]
             # scatter 函数用于绘制散点图
             plt.scatter(xs, ys, color=object.color)
         elif type(object) == Arrow:

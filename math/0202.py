@@ -23,8 +23,20 @@ draw(
 # 这两部分加起来之后，将会返回21个都加了 (-1.5, -2.5) 的向量，用中括号括起来，让他们组成一个新的向量数组
 # dino_vectors 中每个向量都加 (-1.5, -2.5) 相当于左移 1.5，再下移 2.5
 dino_vectors2 = [ add((-1.5, -2.5), v) for v in dino_vectors ]
-draw(Points(*dino_vectors2), Polygon(*dino_vectors))
 
-# 向量加法的第二个版本，支持传入任意多个向量，使用了列表推导式
-def add2(*vs):
-    return (sum([v[0] for v in vs]), sum([v[1] for v in vs]))
+draw(
+    Points(*dino_vectors, color=color.blue),
+    Polygon(*dino_vectors, color=color.blue),
+    Points(*dino_vectors2, color=color.red),
+    Polygon(*dino_vectors2, color=color.red)
+)
+
+arraws = [ Arrow(tip, tail, color=color.black) for (tip, tail) in zip(dino_vectors2, dino_vectors) ]
+
+draw(
+    Points(*dino_vectors, color=color.blue),
+    Polygon(*dino_vectors, color=color.blue),
+    Points(*dino_vectors2, color=color.red),
+    Polygon(*dino_vectors2, color=color.red),
+    *arraws
+)
