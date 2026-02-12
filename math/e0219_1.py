@@ -10,6 +10,7 @@ vxs = [ 0, 2, 4, 6, 8, 10 ]
 vys = [ 0, 1, 2, 3, 4, 5 ]
 # 将x轴坐标和y轴坐标组合为向量列表
 vectors = [ (x, y) for x, y in zip(vxs, vys) ]
+
 # 将向量列表组合为向量对列表
 pairs = list(zip(vectors, vectors[1:]))
 # 用向量对列表生成箭头列表
