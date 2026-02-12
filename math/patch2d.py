@@ -1,10 +1,11 @@
 # 定义各种2d形状
 
 import color
+from math import sqrt
 
 # 箭头
 class Arrow():
-    def __init__(self, tip, tail=(0,0), color=color.red):
+    def __init__(self, tip, tail=(0, 0), color=color.red):
         self.tip = tip
         self.tail = tail
         self.color = color
