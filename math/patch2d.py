@@ -33,11 +33,6 @@ class Segment():
         self.end_point = end_point
         self.color = color
 
-# 定义向量加法运算函数，向量的加法就是组成向量的两个成员分别相加，组成新的向量
-# 加法可以理解为向量的移动，先向 x 轴的左或者右移动，再向 y 轴的上或者下移动
-def add(v1, v2):
-    return (v1[0] + v2[0], v1[1] + v2[1])
-
 # 向量加法的第二个版本，支持传入任意多个向量，使用了列表推导式
 def add2(*vs):
     return (sum([v[0] for v in vs]), sum([v[1] for v in vs]))
