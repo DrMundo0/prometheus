@@ -7,6 +7,10 @@ from patch2d import Arrow, Polygon, Points, Segment
 def add(v1, v2):
     return (v1[0] + v2[0], v1[1] + v2[1])
 
+# 利用 sum 函数和列表推导式计算任意个向量的和
+def add2(*vectors):
+    return (sum(v[0] for v in vectors), sum(v[1] for v in vectors))
+
 # 图2-13：绘制出(4, 3)和(-1, 1)的向量和
 if __name__ == "__main__":
     # 三个点，演示向量的加法
