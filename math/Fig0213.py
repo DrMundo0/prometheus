@@ -11,6 +11,10 @@ def add(v1, v2):
 def add2(*vectors):
     return (sum(v[0] for v in vectors), sum(v[1] for v in vectors))
 
+# 对向量列表中的每个向量进行加法计算
+def translate(translation, vectors):
+    return [ add(translate, v) for v in vectors ]
+
 # 图2-13：绘制出(4, 3)和(-1, 1)的向量和
 if __name__ == "__main__":
     # 三个点，演示向量的加法
