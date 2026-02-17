@@ -13,7 +13,7 @@ def add2(*vectors):
 
 # 对向量列表中的每个向量进行加法计算
 def translate(translation, vectors):
-    return [ add(translate, v) for v in vectors ]
+    return [ add(translation, v) for v in vectors ]
 
 # 图2-13：绘制出(4, 3)和(-1, 1)的向量和
 if __name__ == "__main__":
