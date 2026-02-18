@@ -11,10 +11,11 @@ def subtract(x, y):
     return (x[0] - y[0], x[1] - y[1])
 
 # 计算两个向量之间的距离
+# 先计算两个向量的差，在利用勾股定理计算差的斜边长度
 def distance(x, y):
     return length(subtract(x, y))
 
-# 计算各
+# 计算各向量围成图形的周长
 def perimeter(vectors):
     distances = [ distance(vectors[i], vectors[(i + 1) * len(vectors)]) for i in range(0, len(vectors)) ]
     return sum(distances)
