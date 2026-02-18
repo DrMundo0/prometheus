@@ -2,7 +2,7 @@ import color
 from draw2d import draw
 from Fig0207 import dino_vectors
 from Fig0213 import add, add2, translate
-from Fig0221 import multiply
+from Fig0221 import scale
 from Fig0224 import subtract
 from patch2d import Arrow, Polygon, Points, Segment
 
