@@ -28,8 +28,11 @@ def to_polar(vector):
 
 # 将任意个向量旋转一定的角度
 def rotate(angle, vectors):
-    polar = [ to_polar(v) for v in vectors ]
-    rotated_polar = [ (l, a + angle) for l, a in polar ]
+    # 笛卡尔坐标转换为极坐标
+    polars = [ to_polar(v) for v in vectors ]
+    # 极坐标旋转
+    rotated_polar = [ (l, a + angle) for l, a in polars ]
+    # 旋转后的极坐标转换为笛卡尔坐标
     rotated = [ to_cartesian(p) for p in rotated_polar ]
     return rotated
 
