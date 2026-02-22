@@ -26,6 +26,13 @@ def to_polar(vector):
     # 利用勾股定理得到斜边的长，斜边的长和角度组成极坐标
     return (length(vector), angle)
 
+# 将任意个向量旋转一定的角度
+def rotate(*vector, angle):
+    polar = [ to_polar(v) for v in vector ]
+    rotated_polar = [ (l, a + angle) for l, a in polar ]
+    rotated = [ to_cartesian(p) for p in rotated_polar ]
+    return rotated
+
 # 图2-35：用量角器测量116.57°
 if __name__ == "__main__":
     print("")
