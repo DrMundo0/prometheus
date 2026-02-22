@@ -27,12 +27,18 @@ def to_polar(vector):
     return (length(vector), angle)
 
 # 将任意个向量旋转一定的角度
-def rotate(*vector, angle):
-    polar = [ to_polar(v) for v in vector ]
+def rotate(angle, vectors):
+    polar = [ to_polar(v) for v in vectors ]
     rotated_polar = [ (l, a + angle) for l, a in polar ]
     rotated = [ to_cartesian(p) for p in rotated_polar ]
     return rotated
 
-# 图2-35：用量角器测量116.57°
+# 图2-56：恐龙的旋转和平移
 if __name__ == "__main__":
-    print("")
+    vs = translate((8, 8), rotate(5 * pi / 3, dino_vectors))
+    draw(
+        Points(*dino_vectors),
+        Polygon(*dino_vectors),
+        Points(*vs),
+        Polygon(*vs, color=color.red)
+    )

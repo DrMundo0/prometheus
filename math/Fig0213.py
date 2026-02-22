@@ -11,7 +11,7 @@ def add(v1, v2):
 def add2(*vectors):
     return (sum(v[0] for v in vectors), sum(v[1] for v in vectors))
 
-# 对向量列表中的每个向量进行加法计算
+# 对向量列表中的每个向量进行加法计算，在笛卡尔坐标系中的效果为向量的移动
 def translate(translation, vectors):
     return [ add(translation, v) for v in vectors ]
 
