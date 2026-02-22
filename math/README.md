@@ -35,9 +35,9 @@ $ py -m venv venv
 > pip3 install matplotlib
 
 # 将依赖写入 requirements 文件，以便下次使用
-> pip3 freeze > 0201_requirements.txt
+> pip3 freeze > requirements.txt
 
-> pip3 install -r 0201_requirements.txt
+> pip3 install -r requirements.txt
 
 # 退出环境
 > venv\Scripts\deactivate.bat
