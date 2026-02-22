@@ -38,10 +38,10 @@ def rotate(angle, vectors):
 
 # 图2-56：恐龙的旋转和平移
 if __name__ == "__main__":
-    vs = translate((8, 8), rotate(5 * pi / 3, dino_vectors))
+    vectors = translate((8, 8), rotate(5 * pi / 3, dino_vectors))
     draw(
         Points(*dino_vectors),
         Polygon(*dino_vectors),
-        Points(*vs),
-        Polygon(*vs, color=color.red)
+        Points(*vectors),
+        Polygon(*vectors, color=color.red)
     )
