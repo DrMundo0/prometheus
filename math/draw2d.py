@@ -1,13 +1,15 @@
 # 使用 matplotlib 绘制图形
 
 import matplotlib
+import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 import numpy as np
 
 from math import ceil, floor, pi, sqrt
 from matplotlib.collections import PatchCollection
+from matplotlib.patches import Arc
 from matplotlib.pyplot import xlim, ylim
-from patch2d import Arrow, Polygon, Points, Segment
+from patch2d import ArcX, Arrow, Polygon, Points, Segment
 
 # helper function to extract all the vectors from a list of objects
 # 从对象列表中提取所有向量
@@ -22,6 +24,10 @@ def extract_vectors(objects):
         elif type(object) == Arrow:
             yield object.tip
             yield object.tail
+        elif type(object) == ArcX:
+            yield object.center
+            yield object.start_point
+            yield object.end_point
         elif type(object) == Segment:
             yield object.start_point
             yield object.end_point
@@ -90,10 +96,45 @@ def draw(*objects, origin=True, axes=True, grid=(1, 1), nice_aspect_ratio=True, 
             plt.gca().arrow(tail[0], tail[1], new_x, new_y,
             head_width=tip_length/1.5, head_length=tip_length,
             fc=object.color, ec=object.color)
+        elif type(object) == ArcX:
+            cx, cy = object.center
+            sx, sy = object.start_point
+            ex, ey = object.end_point
+
+            # 计算半径（验证起点和终点到圆心距离是否相等）
+            r1 = np.sqrt((sx - cx)**2 + (sy - cy)**2)
+            r2 = np.sqrt((ex - cx)**2 + (ey - cy)**2)
+            radius = (r1 + r2) / 2
+
+            # 计算起始角度和结束角度（atan2返回弧度，范围[-π, π]）
+            start_angle = np.arctan2(sy - cy, sx - cx)
+            end_angle = np.arctan2(ey - cy, ex - cx)
+
+            # 调整角度范围，确保画出正确的弧线
+            if object.clockwise:
+                # 顺时针：结束角度应该小于开始角度
+                while end_angle > start_angle:
+                    end_angle -= 2 * np.pi
+            else:
+                # 逆时针：结束角度应该大于开始角度  
+                while end_angle < start_angle:
+                    end_angle += 2 * np.pi
+            
+            # 生成角度序列
+            angles = np.linspace(start_angle, end_angle, 100)
+            
+            # 极坐标转笛卡尔坐标
+            # 角度的余弦是邻边（即横坐标）和斜边（即半径）的比值，再加上圆心的横坐标
+            x = cx + radius * np.cos(angles)
+            # 角度的正弦是对边（即纵坐标）和斜边（即半径）的比值，再加上圆心的纵坐标
+            y = cy + radius * np.sin(angles)
+            
+            # 绘制
+            plt.plot(x, y, color=object.color)
         elif type(object) == Segment:
             x1, y1 = object.start_point
             x2, y2 = object.end_point
-            plt.plot([x1,x2],[y1,y2], color=object.color)
+            plt.plot([x1, x2], [y1, y2], color=object.color)
         else:
             raise TypeError("Unrecognized object: {}".format(object))
 

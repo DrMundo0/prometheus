@@ -10,6 +10,15 @@ class Arrow():
         self.tail = tail
         self.color = color
 
+# 弧线
+class ArcX():
+    def __init__(self, center=(0, 0), start_point=(0, 0), end_point=(0, 0), clockwise=True, color=color.orange):
+        self.center = center # 圆心坐标 (x, y)
+        self.start_point = start_point # 起点坐标 (x, y)
+        self.end_point = end_point # 终点坐标 (x, y)
+        self.clockwise = clockwise # 是否顺时针方向（默认顺时针）
+        self.color = color # 颜色
+
 # 多边形
 class Polygon():
     def __init__(self, *vertices, color=color.blue, fill=None, alpha=0.4):
