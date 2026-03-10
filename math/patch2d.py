@@ -1,7 +1,6 @@
 # 定义各种2d形状
 
 import color
-from math import sqrt
 
 # 箭头
 class Arrow():

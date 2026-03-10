@@ -1,13 +1,11 @@
 # 使用 matplotlib 绘制图形
 
 import matplotlib
-import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 import numpy as np
 
 from math import ceil, floor, pi, sqrt
 from matplotlib.collections import PatchCollection
-from matplotlib.patches import Arc
 from matplotlib.pyplot import xlim, ylim
 from patch2d import ArcX, Arrow, Polygon, Points, Segment
 
