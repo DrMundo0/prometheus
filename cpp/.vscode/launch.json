@@ -1,0 +1,21 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Main Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "make",
+            "program": "${workspaceFolder}/target/a.out",
+            "MIMode": "gdb",
+            "stopAtEntry": false,
+            // false时将使用vscode内置的terminal调试，会比较方便
+            "externalConsole": false
+        }
+
+    ]
+}
