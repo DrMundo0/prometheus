@@ -1,5 +1,10 @@
 # Prometheus
 
+## 社区
+
+* [魔塔社区](https://modelscope.cn/my/mynotebook)
+* [Kaggle](https://www.kaggle.com)
+
 Kaggle 的 Notebook 中竟然没有代码提示，这个对编写代码的效率很有影响
 
 * [Code completion/ Intellisense](https://www.kaggle.com/discussions/getting-started/132193)
