@@ -1,3 +1,5 @@
+# 学习字符串
+
 name = "ada lovelace"
 
 # 首字母大写

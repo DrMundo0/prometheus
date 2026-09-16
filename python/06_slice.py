@@ -1,4 +1,5 @@
-# 切片操作
+# 学习切片操作
+
 players = [ 'charlees', 'martina', 'michael', 'florence', 'eli' ]
 
 # 冒号前是起始下标，冒号后是结束下标

@@ -1,4 +1,4 @@
-# 演示列表的用法
+# 学习列表
 # https://jupyter.org/try-jupyter/lab/
 
 bicycles = [ 'trek', 'cannondale', 'redline', 'specialized' ]

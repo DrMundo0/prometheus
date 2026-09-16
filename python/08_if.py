@@ -1,3 +1,5 @@
+# 学习条件判断
+
 cars = [ 'audi', 'bmw', 'subaru', 'toyota' ]
 
 for car in cars:

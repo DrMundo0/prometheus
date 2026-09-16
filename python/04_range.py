@@ -1,3 +1,5 @@
+# 学习区间函数
+
 # 使用range函数快速创建一系列数字，从1开始，到4结束，不会打印5
 for value in range(1, 5):
     print(value)
