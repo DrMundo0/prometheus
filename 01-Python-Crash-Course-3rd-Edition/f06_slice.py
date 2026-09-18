@@ -30,3 +30,12 @@ my_foods.append('cannoli')
 friend_foods.append('ice cream')
 print(f"My favorite foods are: {my_foods}")
 print(f"My friend's favorite foods are: {friend_foods}")
+
+# ------ Fig2 ------
+# 复制列表
+players2 = players[:]
+print(players2)
+# 修改副本不影响原始列表
+players2.pop()
+print(players2)
+print(players)
