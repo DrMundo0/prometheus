@@ -8,3 +8,5 @@ Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Prog
 
 * [amazon](https://www.amazon.com/Python-Crash-Course-Eric-Matthes-ebook/dp/B09WJX22TV/ref=sr_1_1?crid=3AJ3UCUSX69GN&dib=eyJ2IjoiMSJ9.eY37CyPk0ADrpdV2f9C0IgC0rc_5jmtYTb_CAiLxaAZEEr62gJQlWH-9Cbcxwh80Q0KPALSbnTUI5aGM1xi4SV6T9bZVA6Pb9votPcAEWJZkfz9aLj94zjKlokM7qMV68s-3V7dKrcC2viyRIv3NHAI2wj2sKDNrY5R8govMqAVyo2YSPluCDH-5nXJxIxa5pw7wd9e-AK6N5jTYOTnQ2IqCVavJEa24iZswUtJIKmY.HTlsIxUPeuQ9oLtYjQx_ZX_N0LHT4S2kU2sIuP2RDgU&dib_tag=se&keywords=Python+Crash+Course&qid=1789716235&s=digital-text&sprefix=python+crash+course%2Cdigital-text%2C1072&sr=1-1)
 * [douban](https://book.douban.com/subject/36365320/)
+
+c表示chapter，s表示section
