@@ -12,6 +12,7 @@ class AlienInvasion:
     
     def run_game(self):
         while True:
+            # 判断事件类型
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
