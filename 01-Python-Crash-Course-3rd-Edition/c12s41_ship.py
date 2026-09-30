@@ -26,10 +26,10 @@ class Ship:
     def update(self):
         """更新飞船的位置"""
         # 最右不能超过屏幕的右边
-        if self.moving_right and self.rect.right < self.screen_rect.right:
+        if self.moving_right and self.rect.right < self.screen_rect.right + self.rect.width / 2:
             self.x += self.settings.ship_speed
         # 把elif改成if可以支持斜着移动
-        if self.moving_left and self.rect.left > 0:
+        if self.moving_left and self.rect.left > 0 - self.rect.width / 2:
             self.x -= self.settings.ship_speed
         if self.moving_up and self.rect.top > 0:
             self.rect.y -= self.settings.ship_speed
