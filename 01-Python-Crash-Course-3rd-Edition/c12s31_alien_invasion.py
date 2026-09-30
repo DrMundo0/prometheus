@@ -23,11 +23,19 @@ class AlienInvasion:
 
     # 辅助方法以下划线开头，只在类中调用，不在类外调用
     def _check_events(self):
-        """响应案件和鼠标事件"""
+        """响应按键和鼠标事件"""
         # 判断事件类型
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            # 监听按键按下事件
+            elif event.type == pygame.KEYDOWN:
+                # 右方向键向右移动
+                if event.key == pygame.K_RIGHT:
+                    self.ship.rect.x += 1
+                # 左方向键向左移动
+                elif event.key == pygame.K_LEFT:
+                    self.ship.rect.x -= 1
 
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""
