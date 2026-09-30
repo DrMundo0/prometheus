@@ -36,11 +36,21 @@ class AlienInvasion:
                     self.ship.moving_right = True
                 # 左方向键向左移动
                 elif event.key == pygame.K_LEFT:
-                    self.ship.rect.x -= 1
+                    self.ship.moving_left = True
+                elif event.key == pygame.K_UP:
+                    self.ship.moving_up = True
+                elif event.key == pygame.K_DOWN:
+                    self.ship.moving_down = True
             # 监听按键弹起事件
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = False
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False
+                elif event.key == pygame.K_UP:
+                    self.ship.moving_up = False
+                elif event.key == pygame.K_DOWN:
+                    self.ship.moving_down = False
 
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""
