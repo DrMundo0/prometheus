@@ -17,6 +17,7 @@ class AlienInvasion:
     def run_game(self):
         while True:
             self._check_events()
+            self.ship.update()
             self._update_screen()
             # 设置帧率每秒60
             self.clock.tick(60)
@@ -32,10 +33,14 @@ class AlienInvasion:
             elif event.type == pygame.KEYDOWN:
                 # 右方向键向右移动
                 if event.key == pygame.K_RIGHT:
-                    self.ship.rect.x += 1
+                    self.ship.moving_right = True
                 # 左方向键向左移动
                 elif event.key == pygame.K_LEFT:
                     self.ship.rect.x -= 1
+            # 监听按键弹起事件
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = False
 
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""

@@ -9,7 +9,14 @@ class Ship:
         self.rect = self.image.get_rect()
         # 飞船的底部中间与屏幕的底部中间对齐
         self.rect.midbottom = self.screen_rect.midbottom
+        # 移动标志
+        self.moving_right = False
 
     def blitme(self):
         """在指定位置绘制飞船"""
         self.screen.blit(self.image, self.rect)
+
+    def update(self):
+        """更新飞船的位置"""
+        if self.moving_right:
+            self.rect.x += 1
