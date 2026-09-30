@@ -16,18 +16,27 @@ class AlienInvasion:
     
     def run_game(self):
         while True:
-            # 判断事件类型
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-            # 设置屏幕背景色
-            self.screen.fill(self.settings.bg_color)
-            # 绘制飞船
-            self.ship.blitme()
-            # 刷新绘制区域
-            pygame.display.flip()
+            self._check_events()
+            self._update_screen()
             # 设置帧率每秒60
             self.clock.tick(60)
+
+    # 辅助方法以下划线开头，只在类中调用，不在类外调用
+    def _check_events(self):
+        """响应案件和鼠标事件"""
+        # 判断事件类型
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+    def _update_screen(self):
+        """更新屏幕上的图像，并切换到新屏幕"""
+        # 设置屏幕背景色
+        self.screen.fill(self.settings.bg_color)
+        # 绘制飞船
+        self.ship.blitme()
+        # 刷新绘制区域
+        pygame.display.flip()
 
 if __name__ == "__main__":
     ai = AlienInvasion()
