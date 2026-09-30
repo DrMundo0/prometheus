@@ -3,12 +3,15 @@ import pygame
 class Ship:
     def __init__(self, ai_game):
         self.screen = ai_game.screen
+        self.settings = ai_game.settings
         self.screen_rect = ai_game.screen.get_rect()
         # 加载图像，类型为surface
         self.image = pygame.image.load('img/ship.png')
         self.rect = self.image.get_rect()
         # 飞船的底部中间与屏幕的底部中间对齐
         self.rect.midbottom = self.screen_rect.midbottom
+        # 浮点让飞船的移动更平滑
+        self.x = float(self.rect.x)
         # 向右移动标志
         self.moving_right = False
         # 向左移动标志
@@ -25,10 +28,12 @@ class Ship:
     def update(self):
         """更新飞船的位置"""
         if self.moving_right:
-            self.rect.x += self.speed
-        elif self.moving_left:
-            self.rect.x -= self.speed
-        elif self.moving_up:
+            self.x += self.settings.ship_speed
+        # 把elif改成if可以支持斜着移动
+        if self.moving_left:
+            self.x -= self.settings.ship_speed
+        if self.moving_up:
             self.rect.y -= self.speed
-        elif self.moving_down:
+        if self.moving_down:
             self.rect.y += self.speed
+        self.rect.x = self.x
