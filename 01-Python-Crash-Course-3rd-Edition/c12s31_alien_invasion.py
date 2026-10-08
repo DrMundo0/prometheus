@@ -27,16 +27,7 @@ class AlienInvasion:
             self._check_events()
             # 更新飞船的位置
             self.ship.update()
-            # 更新子弹的位置
-            self.bullets.update()
-
-            # 删除已消失的子弹，节约内存
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
-
-            print(len(self.bullets))
-            
+            self._update_bullets()
             self._update_screen()
             # 设置帧率每秒60
             self.clock.tick(60)
@@ -96,6 +87,18 @@ class AlienInvasion:
         
         # 刷新绘制区域
         pygame.display.flip()
+
+    def _update_bullets(self):
+        """更新子弹的位置并删除已消失的子弹"""
+        # 更新子弹的位置
+        self.bullets.update()
+
+        # 删除已消失的子弹，节约内存
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+
+        print(len(self.bullets))
 
     def _fire_bullet(self):
         """发射子弹"""
