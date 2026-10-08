@@ -4,6 +4,7 @@ import pygame
 from c12s34_settings import Settings
 from c12s41_ship import Ship
 from c12s82_bullet import Bullet
+from c13s21_alien import Alien
 
 class AlienInvasion:
     """管理游戏资源和行为"""
@@ -21,6 +22,8 @@ class AlienInvasion:
         self.ship = Ship(self)
         # 存放所有有效的子弹
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+        self._create_fleet()
     
     def run_game(self):
         while True:
@@ -73,6 +76,19 @@ class AlienInvasion:
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = False
 
+    def _create_fleet(self):
+        # 创建外星飞船舰队
+        alien = Alien(self)
+        alien_width = alien.rect.width
+        current_x = alien_width
+
+        while current_x < (self.settings.screen_width - 2 * alien_width):
+            new_alien = Alien(self)
+            new_alien.x = current_x
+            new_alien.rect.x = current_x
+            self.aliens.add(new_alien)
+            current_x += 2 * alien_width
+
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""
         # 设置屏幕背景色
@@ -84,6 +100,7 @@ class AlienInvasion:
 
         # 绘制飞船
         self.ship.blitme()
+        self.aliens.draw(self.screen)
         
         # 刷新绘制区域
         pygame.display.flip()
