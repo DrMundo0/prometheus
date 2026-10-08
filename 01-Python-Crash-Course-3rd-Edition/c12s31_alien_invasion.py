@@ -3,6 +3,7 @@ import pygame
 
 from c12s34_settings import Settings
 from c12s41_ship import Ship
+from c12s82_bullet import Bullet
 
 class AlienInvasion:
     """管理游戏资源和行为"""
@@ -10,17 +11,32 @@ class AlienInvasion:
         pygame.init()
         self.clock = pygame.time.Clock()
         self.settings = Settings()
+        # 窗口模式
+        self.screen = pygame.display.set_mode((1200, 800))
         # 全屏游戏
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
         self.ship = Ship(self)
+        # 存放所有有效的子弹
+        self.bullets = pygame.sprite.Group()
     
     def run_game(self):
         while True:
             self._check_events()
+            # 更新飞船的位置
             self.ship.update()
+            # 更新子弹的位置
+            self.bullets.update()
+
+            # 删除已消失的子弹，节约内存
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+
+            print(len(self.bullets))
+            
             self._update_screen()
             # 设置帧率每秒60
             self.clock.tick(60)
@@ -50,6 +66,8 @@ class AlienInvasion:
             self.ship.moving_up = True
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = True
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
         elif event.key == pygame.K_ESCAPE:
             # 按Esc退出游戏
             sys.exit()
@@ -68,10 +86,21 @@ class AlienInvasion:
         """更新屏幕上的图像，并切换到新屏幕"""
         # 设置屏幕背景色
         self.screen.fill(self.settings.bg_color)
+
+        # 先绘制子弹，以防子弹出现在飞机上
+        for bullet in self.bullets:
+            bullet.draw_bullet()
+
         # 绘制飞船
         self.ship.blitme()
+        
         # 刷新绘制区域
         pygame.display.flip()
+
+    def _fire_bullet(self):
+        """发射子弹"""
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
 
 if __name__ == "__main__":
     ai = AlienInvasion()
