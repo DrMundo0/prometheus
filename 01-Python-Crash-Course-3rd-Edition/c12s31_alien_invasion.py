@@ -32,6 +32,7 @@ class AlienInvasion:
             # 更新飞船的位置
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
             # 设置帧率每秒60
             self.clock.tick(60)
@@ -80,19 +81,26 @@ class AlienInvasion:
     def _create_fleet(self):
         # 创建外星飞船舰队
         alien = Alien(self)
-        alien_width = alien.rect.width
-        current_x = alien_width
+        # 因为size是一个元组，所以可以用两个变量来拆分接收
+        alien_width, alien_height = alien.rect.size
+        current_x, current_y = alien_width, alien_height
 
-        # 因为外星人的间距与外星人的宽度相同，所以是2倍的外星人宽度
-        while current_x < (self.settings.screen_width - 2 * alien_width):
-            self._create_alien(current_x)
-            current_x += 2 * alien_width
+        while current_y < (self.settings.screen_height - 3 * alien_height):
+            # 因为外星人的间距与外星人的宽度相同，所以是2倍的外星人宽度
+            while current_x < (self.settings.screen_width - 2 * alien_width):
+                self._create_alien(current_x, current_y)
+                current_x += 2 * alien_width
+            # 添加一行外星人后，重置x并递增y值
+            current_x = alien_width
+            current_y += 2 * alien_height
 
-    def _create_alien(self, x_position):
+    def _create_alien(self, x_position, y_position):
         """创建一个外星人并将其放到当前行中"""
         new_alien = Alien(self)
         new_alien.x = x_position
+        new_alien.y = y_position
         new_alien.rect.x = x_position
+        new_alien.rect.y = y_position
         self.aliens.add(new_alien)
 
     def _update_screen(self):
@@ -123,6 +131,10 @@ class AlienInvasion:
                 self.bullets.remove(bullet)
 
         print(len(self.bullets))
+
+    def _update_aliens(self):
+        """更新外星舰队中所有外星人的位置"""
+        self.aliens.update()
 
     def _fire_bullet(self):
         """发射子弹"""
