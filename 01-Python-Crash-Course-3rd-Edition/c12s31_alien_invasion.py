@@ -103,6 +103,20 @@ class AlienInvasion:
         new_alien.rect.y = y_position
         self.aliens.add(new_alien)
 
+    def _check_alien_fleet_edges(self):
+        """在外星人到达边缘时采取相应的措施"""
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                # 每次撞到屏幕边缘后下移每个外星人并改版它们的移动方向
+                self._change_alien_fleet_direction()
+                break
+
+    def _change_alien_fleet_direction(self):
+        """将整个外星舰队向下移动，并改变它们的移动方向"""
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.alien_fleet_drop_speed
+        self.settings.alien_fleet_direction *= -1
+
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""
         # 设置屏幕背景色
@@ -134,6 +148,7 @@ class AlienInvasion:
 
     def _update_aliens(self):
         """更新外星舰队中所有外星人的位置"""
+        self._check_alien_fleet_edges()
         self.aliens.update()
 
     def _fire_bullet(self):

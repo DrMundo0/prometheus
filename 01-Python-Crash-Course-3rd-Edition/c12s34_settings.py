@@ -14,3 +14,7 @@ class Settings:
         self.bullets_allowed = 3
         # 外星人的移动速度
         self.alien_speed = 1.0
+        # 外星人下落速度
+        self.alien_fleet_drop_speed = 2
+        # 外星人移动方向，1表示向右，-1表示向左
+        self.alien_fleet_direction = 1
