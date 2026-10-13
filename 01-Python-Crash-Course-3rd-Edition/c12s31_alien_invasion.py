@@ -22,6 +22,7 @@ class AlienInvasion:
         self.ship = Ship(self)
         # 存放所有有效的子弹
         self.bullets = pygame.sprite.Group()
+        # 外星人编队
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
     
@@ -82,12 +83,17 @@ class AlienInvasion:
         alien_width = alien.rect.width
         current_x = alien_width
 
+        # 因为外星人的间距与外星人的宽度相同，所以是2倍的外星人宽度
         while current_x < (self.settings.screen_width - 2 * alien_width):
-            new_alien = Alien(self)
-            new_alien.x = current_x
-            new_alien.rect.x = current_x
-            self.aliens.add(new_alien)
+            self._create_alien(current_x)
             current_x += 2 * alien_width
+
+    def _create_alien(self, x_position):
+        """创建一个外星人并将其放到当前行中"""
+        new_alien = Alien(self)
+        new_alien.x = x_position
+        new_alien.rect.x = x_position
+        self.aliens.add(new_alien)
 
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""
@@ -100,6 +106,7 @@ class AlienInvasion:
 
         # 绘制飞船
         self.ship.blitme()
+        # 绘制外星人
         self.aliens.draw(self.screen)
         
         # 刷新绘制区域
