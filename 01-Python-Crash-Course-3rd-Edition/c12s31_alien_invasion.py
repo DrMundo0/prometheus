@@ -1,10 +1,13 @@
 import sys
+from time import sleep
+
 import pygame
 
 from c12s34_settings import Settings
 from c12s41_ship import Ship
 from c12s82_bullet import Bullet
 from c13s21_alien import Alien
+from c13s62_game_stats import GameStats
 
 class AlienInvasion:
     """管理游戏资源和行为"""
@@ -19,6 +22,9 @@ class AlienInvasion:
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
+        # 创建一个用于存储游戏统计信息的实例
+        self.stats = GameStats(self)
+        # 创建飞船
         self.ship = Ship(self)
         # 存放所有有效的子弹
         self.bullets = pygame.sprite.Group()
@@ -167,7 +173,20 @@ class AlienInvasion:
         # 检测外星人和飞船之间的碰撞
         # 检测一个Sprite和Group的碰撞
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            print("Ship hit!!!")
+            self._ship_hit()
+
+    def _ship_hit(self):
+        """响应飞船和外星人的碰撞"""
+        # 将ships_left减一
+        self.stats.ships_left -= 1
+        # 清空外星人列表和子弹列表
+        self.bullets.empty()
+        self.aliens.empty()
+        # 创建一个新的外星舰队，并将飞船放在屏幕底部的中央
+        self._create_fleet()
+        self.ship.center_ship()
+        # 暂停
+        sleep(1.5)
 
     def _fire_bullet(self):
         """发射子弹"""

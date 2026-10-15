@@ -37,3 +37,8 @@ class Ship:
             self.rect.y += self.settings.ship_speed
         
         self.rect.x = self.x
+
+    def center_ship(self):
+        """将飞船放在屏幕底部的中央"""
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)
