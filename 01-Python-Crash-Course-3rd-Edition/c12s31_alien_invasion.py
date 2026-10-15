@@ -31,17 +31,23 @@ class AlienInvasion:
         # 外星人编队
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
+        # 游戏启动后处于活动状态
+        self.game_active = True
     
     def run_game(self):
+        """开始游戏的主循环"""
         while True:
             self._check_events()
-            # 更新飞船的位置
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
-            self._update_screen()
-            # 设置帧率每秒60
-            self.clock.tick(60)
+
+            # 当玩家用完所有命时不再刷新游戏界面
+            if self.game_active:
+                # 更新飞船的位置
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+                self._update_screen()
+                # 设置帧率每秒60
+                self.clock.tick(60)
 
     # 辅助方法以下划线开头，只在类中调用，不在类外调用
     def _check_events(self):
@@ -180,16 +186,19 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """响应飞船和外星人的碰撞"""
-        # 将ships_left减一
-        self.stats.ships_left -= 1
-        # 清空外星人列表和子弹列表
-        self.bullets.empty()
-        self.aliens.empty()
-        # 创建一个新的外星舰队，并将飞船放在屏幕底部的中央
-        self._create_fleet()
-        self.ship.center_ship()
-        # 暂停
-        sleep(1.5)
+        if self.stats.ships_left > 0:
+            # 将ships_left减一
+            self.stats.ships_left -= 1
+            # 清空外星人列表和子弹列表
+            self.bullets.empty()
+            self.aliens.empty()
+            # 创建一个新的外星舰队，并将飞船放在屏幕底部的中央
+            self._create_fleet()
+            self.ship.center_ship()
+            # 暂停
+            sleep(1.5)
+        else:
+            self.game_active = False
 
     def _check_aliens_bottom(self):
         """检测是否有外星人到达了屏幕的下边缘"""
