@@ -85,6 +85,7 @@ class AlienInvasion:
         alien_width, alien_height = alien.rect.size
         current_x, current_y = alien_width, alien_height
 
+        # 根据屏幕的高度控制外星舰队的行数
         while current_y < (self.settings.screen_height - 3 * alien_height):
             # 因为外星人的间距与外星人的宽度相同，所以是2倍的外星人宽度
             while current_x < (self.settings.screen_width - 2 * alien_width):
@@ -144,8 +145,18 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
+        self._check_bullet_alien_collisions()
+
+    def _check_bullet_alien_collisions(self):
+        """响应子弹和外星人的碰撞"""
         # 检查是否有子弹击中了外星人，如果是，就删除相应的子弹和外星人
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
+
+        # 每次击落外星人之后检查外星人队列是否为空，空了则创建新的外星舰队
+        if not self.aliens:
+            # 删除现有的子弹并创建一个新的外星舰队
+            self.bullets.empty()
+            self._create_fleet()
 
     def _update_aliens(self):
         """更新外星舰队中所有外星人的位置"""
