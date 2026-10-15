@@ -8,6 +8,7 @@ from c12s41_ship import Ship
 from c12s82_bullet import Bullet
 from c13s21_alien import Alien
 from c13s62_game_stats import GameStats
+from c14s11_button import Button
 
 class AlienInvasion:
     """管理游戏资源和行为"""
@@ -31,8 +32,10 @@ class AlienInvasion:
         # 外星人编队
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
-        # 游戏启动后处于活动状态
-        self.game_active = True
+        # 让游戏一开始处于非活动状态
+        self.game_active = False
+        # 创建Play按钮
+        self.play_button = Button(self, "Play")
     
     def run_game(self):
         """开始游戏的主循环"""
@@ -45,9 +48,10 @@ class AlienInvasion:
                 self.ship.update()
                 self._update_bullets()
                 self._update_aliens()
-                self._update_screen()
-                # 设置帧率每秒60
-                self.clock.tick(60)
+            
+            self._update_screen()
+            # 设置帧率每秒60
+            self.clock.tick(60)
 
     # 辅助方法以下划线开头，只在类中调用，不在类外调用
     def _check_events(self):
@@ -143,6 +147,10 @@ class AlienInvasion:
         self.ship.blitme()
         # 绘制外星人
         self.aliens.draw(self.screen)
+
+        # 如果游戏处于非活动状态就绘制Play按钮
+        if not self.game_active:
+            self.play_button.draw_button()
         
         # 刷新绘制区域
         pygame.display.flip()
