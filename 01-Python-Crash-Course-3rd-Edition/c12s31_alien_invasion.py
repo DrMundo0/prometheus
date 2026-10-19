@@ -66,6 +66,9 @@ class AlienInvasion:
             # 监听按键弹起事件
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
 
     def _check_keydown_events(self, event):
         # 右方向键向右移动
@@ -93,6 +96,12 @@ class AlienInvasion:
             self.ship.moving_up = False
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = False
+
+    def _check_play_button(self, mouse_pos):
+        """在玩家单击Play按钮时开始新游戏"""
+        # 验证鼠标的坐标和Play按钮有没有碰撞
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.game_active = True
 
     def _create_fleet(self):
         # 创建外星飞船舰队
