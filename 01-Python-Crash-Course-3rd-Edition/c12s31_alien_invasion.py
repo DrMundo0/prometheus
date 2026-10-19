@@ -101,7 +101,15 @@ class AlienInvasion:
         """在玩家单击Play按钮时开始新游戏"""
         # 验证鼠标的坐标和Play按钮有没有碰撞
         if self.play_button.rect.collidepoint(mouse_pos):
+            # 重置游戏的统计信息
+            self.stats.reset_stats()
             self.game_active = True
+            # 清空外星人列表和子弹列表
+            self.bullets.empty()
+            self.aliens.empty()
+            # 创建一个新的外星舰队，并将飞创放在屏幕底部的中央
+            self._create_fleet()
+            self.ship.center_ship()
 
     def _create_fleet(self):
         # 创建外星飞船舰队
