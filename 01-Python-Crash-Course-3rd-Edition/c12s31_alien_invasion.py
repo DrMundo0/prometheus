@@ -113,6 +113,8 @@ class AlienInvasion:
             # 创建一个新的外星舰队，并将飞创放在屏幕底部的中央
             self._create_fleet()
             self.ship.center_ship()
+            # 游戏重新开始隐藏鼠标
+            pygame.mouse.set_visible(False)
 
     def _create_fleet(self):
         # 创建外星飞船舰队
@@ -227,6 +229,8 @@ class AlienInvasion:
             sleep(1.5)
         else:
             self.game_active = False
+            # 游戏结束显示鼠标
+            pygame.mouse.set_visible(True)
 
     def _check_aliens_bottom(self):
         """检测是否有外星人到达了屏幕的下边缘"""
