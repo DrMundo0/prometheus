@@ -104,6 +104,8 @@ class AlienInvasion:
 
         # 当点击了Play按钮且游戏未开始时才生效
         if button_clicked and not self.game_active:
+            # 还原游戏速度
+            self.settings.initialize_dynamic_settings()
             # 重置游戏的统计信息
             self.stats.reset_stats()
             self.game_active = True
@@ -200,6 +202,8 @@ class AlienInvasion:
             # 删除现有的子弹并创建一个新的外星舰队
             self.bullets.empty()
             self._create_fleet()
+            # 加快游戏速度
+            self.settings.increase_speed()
 
     def _update_aliens(self):
         """更新外星舰队中所有外星人的位置"""
