@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    font-size: 14px;
+}
+
+h2 {
+    font-size: 1em;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+}
+
+a {
+    background-color: #f8f9fa;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    color: #5f6368;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 19px;
+    padding: 4px 11px;
+    margin: 0 0 5px 8px;
+    text-decoration: none;
+}
+
+a:hover {
+    border: 1px solid rgba(27,31,36,0.15);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    -webkit-transition: all 0.0s;
+    text-decoration: none;
+}
