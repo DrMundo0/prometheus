@@ -1,4 +1,5 @@
 // 412. Fizz Buzz
+// https://leetcode.cn/problems/fizz-buzz/
 // easy
 // 给你一个整数 n ，返回一个字符串数组 answer（下标从 1 开始），其中：
 // answer[i] == "FizzBuzz" 如果 i 同时是 3 和 5 的倍数。
@@ -27,7 +28,7 @@ class Solution
 
             answer.add(sb.toString());
         }
-        
+
         return answer;
     }
 }
